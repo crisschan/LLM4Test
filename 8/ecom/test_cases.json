@@ -1,0 +1,248 @@
+{
+  "project": "ecom",
+  "version": "1.0.0",
+  "description": "电商平台测试用例集合",
+  "testSuites": [
+    {
+      "name": "用户认证测试",
+      "description": "用户注册、登录、登出相关测试",
+      "testCases": [
+        {
+          "id": "TC001",
+          "name": "用户注册",
+          "description": "测试新用户注册功能",
+          "priority": "高",
+          "steps": [
+            "访问注册页面",
+            "填写用户信息（用户名、邮箱、密码）",
+            "点击注册按钮",
+            "验证注册成功提示"
+          ],
+          "expectedResult": "用户注册成功，跳转到登录页面",
+          "testData": {
+            "username": "testuser001",
+            "email": "test001@example.com",
+            "password": "Test123456"
+          }
+        },
+        {
+          "id": "TC002",
+          "name": "用户登录",
+          "description": "测试用户登录功能",
+          "priority": "高",
+          "steps": [
+            "访问登录页面",
+            "输入正确的用户名和密码",
+            "点击登录按钮",
+            "验证登录成功"
+          ],
+          "expectedResult": "用户登录成功，跳转到首页",
+          "testData": {
+            "username": "testuser001",
+            "password": "Test123456"
+          }
+        },
+        {
+          "id": "TC003",
+          "name": "用户登出",
+          "description": "测试用户登出功能",
+          "priority": "中",
+          "steps": [
+            "确保用户已登录",
+            "点击登出按钮",
+            "验证登出成功"
+          ],
+          "expectedResult": "用户登出成功，跳转到登录页面"
+        }
+      ]
+    },
+    {
+      "name": "商品管理测试",
+      "description": "商品浏览、搜索、详情查看相关测试",
+      "testCases": [
+        {
+          "id": "TC004",
+          "name": "商品列表浏览",
+          "description": "测试商品列表页面功能",
+          "priority": "高",
+          "steps": [
+            "访问商品列表页面",
+            "验证商品信息显示",
+            "测试分页功能",
+            "测试排序功能"
+          ],
+          "expectedResult": "商品列表正确显示，分页和排序功能正常"
+        },
+        {
+          "id": "TC005",
+          "name": "商品搜索",
+          "description": "测试商品搜索功能",
+          "priority": "高",
+          "steps": [
+            "在搜索框输入关键词",
+            "点击搜索按钮",
+            "验证搜索结果",
+            "测试高级搜索功能"
+          ],
+          "expectedResult": "搜索结果准确，高级搜索功能正常",
+          "testData": {
+            "searchKeyword": "手机",
+            "category": "电子产品",
+            "priceRange": "1000-5000"
+          }
+        },
+        {
+          "id": "TC006",
+          "name": "商品详情查看",
+          "description": "测试商品详情页面功能",
+          "priority": "高",
+          "steps": [
+            "点击商品进入详情页",
+            "验证商品详细信息",
+            "测试图片轮播功能",
+            "测试规格选择功能"
+          ],
+          "expectedResult": "商品详情信息完整，交互功能正常"
+        }
+      ]
+    },
+    {
+      "name": "购物车测试",
+      "description": "购物车添加、修改、删除商品相关测试",
+      "testCases": [
+        {
+          "id": "TC007",
+          "name": "添加商品到购物车",
+          "description": "测试将商品添加到购物车功能",
+          "priority": "高",
+          "steps": [
+            "选择商品规格",
+            "点击加入购物车按钮",
+            "验证购物车数量更新",
+            "查看购物车详情"
+          ],
+          "expectedResult": "商品成功添加到购物车，数量正确更新"
+        },
+        {
+          "id": "TC008",
+          "name": "修改购物车商品数量",
+          "description": "测试修改购物车中商品数量功能",
+          "priority": "高",
+          "steps": [
+            "进入购物车页面",
+            "修改商品数量",
+            "验证总价计算",
+            "保存修改"
+          ],
+          "expectedResult": "商品数量修改成功，总价计算正确"
+        },
+        {
+          "id": "TC009",
+          "name": "删除购物车商品",
+          "description": "测试从购物车删除商品功能",
+          "priority": "中",
+          "steps": [
+            "进入购物车页面",
+            "选择要删除的商品",
+            "点击删除按钮",
+            "确认删除"
+          ],
+          "expectedResult": "商品成功从购物车删除"
+        }
+      ]
+    },
+    {
+      "name": "订单流程测试",
+      "description": "下单、支付、订单管理相关测试",
+      "testCases": [
+        {
+          "id": "TC010",
+          "name": "创建订单",
+          "description": "测试创建订单功能",
+          "priority": "高",
+          "steps": [
+            "确认购物车商品",
+            "填写收货信息",
+            "选择支付方式",
+            "提交订单"
+          ],
+          "expectedResult": "订单创建成功，生成订单号",
+          "testData": {
+            "receiverName": "张三",
+            "phone": "13800138000",
+            "address": "北京市朝阳区xxx街道xxx号",
+            "paymentMethod": "支付宝"
+          }
+        },
+        {
+          "id": "TC011",
+          "name": "订单支付",
+          "description": "测试订单支付功能",
+          "priority": "高",
+          "steps": [
+            "选择支付方式",
+            "跳转到支付页面",
+            "完成支付流程",
+            "验证支付结果"
+          ],
+          "expectedResult": "支付成功，订单状态更新为已支付"
+        },
+        {
+          "id": "TC012",
+          "name": "查看订单状态",
+          "description": "测试查看订单状态功能",
+          "priority": "中",
+          "steps": [
+            "进入订单列表页面",
+            "查看订单详情",
+            "验证订单状态",
+            "测试订单跟踪功能"
+          ],
+          "expectedResult": "订单状态信息准确，跟踪功能正常"
+        }
+      ]
+    }
+  ],
+  "testEnvironment": {
+    "browser": "Chrome 120+",
+    "os": "Windows 11 / macOS 14+",
+    "screenResolution": "1920x1080",
+    "network": "WiFi / 4G"
+  },
+  "testData": {
+    "validUsers": [
+      {
+        "username": "testuser001",
+        "email": "test001@example.com",
+        "password": "Test123456"
+      },
+      {
+        "username": "testuser002", 
+        "email": "test002@example.com",
+        "password": "Test123456"
+      }
+    ],
+    "testProducts": [
+      {
+        "id": "P001",
+        "name": "iPhone 15 Pro",
+        "category": "手机",
+        "price": 7999,
+        "stock": 100
+      },
+      {
+        "id": "P002", 
+        "name": "MacBook Air M2",
+        "category": "笔记本",
+        "price": 8999,
+        "stock": 50
+      }
+    ]
+  },
+  "executionConfig": {
+    "parallel": true,
+    "retryCount": 2,
+    "timeout": 30000,
+    "screenshotOnFailure": true
+  }
+}
