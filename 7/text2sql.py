@@ -61,7 +61,6 @@ class QueryEngineType(Enum):
 class Text2SQL(object):
     def __init__(self,db_engine,include_tables:list=None,type=QueryEngineType.DEFAULT) -> None:
         self.db_engine = db_engine
-        # self.include_tables = include_tables
         self.type = type
         if include_tables is None:
             self.sql_database = SQLDatabase( self.db_engine)
@@ -75,10 +74,8 @@ class Text2SQL(object):
         @params  :include_tables需要传入的表名，如果说选择了QUERYTIME模式，那么只能传入一个表名
         '''
         ## text2sql
-        # ## chatglm modle
         Settings.llm = OllamaLLM(model=model_id, reuse_client=True, base_url=OLLAMA_BASE_URL,)
-        # llm = ChatGLM(model=model_id, reuse_client=True, api_key=ZHIPU_API_KEY,)
-        # ## chatglm的embedding model
+ 
         
         Settings.embed_model = OllamaEmbeddings(model=embed_model, reuse_client=True, base_url=OLLAMA_BASE_URL,)
 
@@ -129,7 +126,6 @@ if __name__ == '__main__':
     
     t2sql = Text2SQL(engine,include_tables=["pets","category","order","user"],type=QueryEngineType.DEFAULT)
     format_str = '{"$schema": "http://json-schema.org/schema#",  "title": "Pet",  "type": "object",  "properties": {    "id": {      "type": "integer",      "description": "The unique identifier of the pet."    },    "name": {      "type": "string",      "description": "The name of the pet."    },    "category": {      "type": "object",      "properties": {        "id": {          "type": "integer",          "description": "The unique identifier of the pet category."        }      },      "required": ["id"],      "description": "The category of the pet."    },    "status": {      "type": "string",      "enum": ["available", "pending", "sold"],      "description": "The status of the pet."    }  },  "required": ["id", "name", "category", "status"],  "description": "A representation of a pet with its details."}'
-    # format_str = "param_list = [ {'method': 'put', 'endpoint': '/pet', 'data': {'id': , 'name': '', 'status': ''}, 'expected_status': 200},{'method': 'post', 'endpoint': '/pet', 'data': {'': '', 'status': ''}, 'expected_status': 201},]"
     query_str = (
                  f"请帮我生成10条数据，数据格式按照{format_str}的schema，并按照json格式返回给我"
                 )

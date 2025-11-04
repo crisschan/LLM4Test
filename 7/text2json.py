@@ -31,7 +31,6 @@ embed_model = os.getenv("EMBEDDING_MODEL", "nomic-embed-text:latest")
 
 
 class Text2JSon:
-    # def __init__(self, url: str, http_method="GET"):
         
     def get_jsonfile(self,url: str, http_method="GET"):
           '''
@@ -76,11 +75,9 @@ class Text2JSon:
         '''
         self.node_parser = JSONNodeParser()
         # text2json
-        # ## chatglm modle
         Settings.llm = OllamaLLM(
             model=model_id, reuse_client=True, base_url=OLLAMA_BASE_URL,)
-        # llm = ChatGLM(model=model_id, reuse_client=True, api_key=ZHIPU_API_KEY,)
-        # ## chatglm的embedding model
+        
 
         Settings.embed_model = OllamaEmbeddings(
             model=embed_model, reuse_client=True, base_url=OLLAMA_BASE_URL,)
@@ -120,7 +117,6 @@ class Text2JSon:
 if __name__ == '__main__':
     
     t2j = Text2JSon()
-    # filename= t2j.get_jsonfile(url="https://petstore3.swagger.io/api/v3/openapi.json")
     filename="./json/pet.json"
     qe = t2j.query_engine(filename)
     query_str = (
